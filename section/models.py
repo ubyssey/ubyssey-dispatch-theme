@@ -105,6 +105,7 @@ class SectionPage(SectionablePage):
         paginator = Paginator(all_articles, per_page=1)
         # Try to get the ?page=x value
         page = request.GET.get("page")
+        print(page)
         try:
             # If the page exists and the ?page=x is an int
             paginated_articles = paginator.page(page)
@@ -118,6 +119,7 @@ class SectionPage(SectionablePage):
 
         context["featured_articles"] = self.get_featured_articles(queryset=all_articles)
         context["paginated_articles"] = paginated_articles #this object is often called page_obj in Django docs, but Page means something else in Wagtail
+        print(paginated_articles)
 
         return context
     

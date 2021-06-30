@@ -57,10 +57,11 @@
         {% endfor %}
       </div>
     </div>
+     {% endcomment %}
 
     <h3 class="c-page__section">Archive</h3>
-    {% include 'objects/archive.html' %}
-    {% endcomment %}
+
+    {% include 'section/archive.html'  with  articles=paginated_articles %}
 
   </div>
 </main>

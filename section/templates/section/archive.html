@@ -1,4 +1,13 @@
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% load video_filters %}
+
+
 <div class="o-archive">
+
+  {%comment%}
+
+  commented out before the search function is implemented
 
   <div class="o-archive__search">
     <form method="get">
@@ -7,8 +16,12 @@
     </form>
   </div>
 
+  {% endcomment %}
+
   <div class="o-archive__container">
     <div class="o-archive__main">
+
+    {%comment%}
       <div class="o-archive__dropdown-filters">
         <div class="o-mobile-dropdown js-dropdown">
           <a class="o-mobile-dropdown__button js-disable-scroll" href="#">
@@ -58,6 +71,11 @@
         </div>
       </div>
 
+      {% endcomment %}
+
+
+
+
       {% if articles|length > 0 %}
         <div class="o-archive__main__list">
           {% for article in articles %}
@@ -93,6 +111,12 @@
         </div>
 
         <div class="o-archive__pagination">
+
+
+        {% comment %}
+
+        comment out before the search function is implemented
+
           {% if articles.has_previous %}
             <a class="o-button o-archive__pagination__prev" href="{{ request.path }}{% if query_string %}{{ query_string }}&{% else %}?{% endif %}page={{ articles.previous_page_number }}"><i class="fa fa-caret-left" aria-hidden="true"></i> Previous</a>
           {% endif %}
@@ -104,6 +128,23 @@
           {% if articles.has_next %}
             <a class="o-button o-archive__pagination__next" href="{{ request.path }}{% if query_string %}{{ query_string }}&{% else %}?{% endif %}page={{ articles.next_page_number }}">Next <i class="fa fa-caret-right" aria-hidden="true"></i></a>
           {% endif %}
+
+        {% endcomment %}
+
+
+          {% if articles.has_previous %}
+            <a class="o-button o-archive__pagination__prev" href="?page={{ articles.previous_page_number }}"><i class="fa fa-caret-left" aria-hidden="true"></i> Previous</a>
+          {% endif %}
+
+          <span class="o-archive__pagination__current" >
+            Page {{ articles.number }} of {{ articles.paginator.num_pages }}
+          </span>
+
+          {% if articles.has_next %}
+            <a class="o-button o-archive__pagination__next" href="?page={{ articles.next_page_number }}">Next <i class="fa fa-caret-right" aria-hidden="true"></i></a>
+          {% endif %}
+
+
         </div>
 
       {% else %}
