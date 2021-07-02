@@ -102,7 +102,7 @@ class SectionPage(SectionablePage):
             #all_articles.filter
 
         # Paginate all posts by 15 per page
-        paginator = Paginator(all_articles, per_page=1)
+        paginator = Paginator(all_articles, per_page=10)
         # Try to get the ?page=x value
         page = request.GET.get("page")
      
